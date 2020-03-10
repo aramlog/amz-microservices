@@ -42,10 +42,16 @@ zuul:
 
 ---
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://52.58.55.103:8000/eureka/
-
 spring:
   profiles: dev
+
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
+    lease-expiration-duration-in-seconds: 5
+  client:
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://52.58.55.103:8000/eureka/

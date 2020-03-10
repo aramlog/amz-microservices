@@ -38,10 +38,6 @@ spring:
             non_contextual_creation: true
 
 ---
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://52.58.55.103:8000/eureka/
 
 spring:
   profiles: dev
@@ -50,3 +46,14 @@ spring:
     url: jdbc:postgresql://52.58.55.103:5432/postgres
     username: postgres
     password: amz!123
+
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
+    lease-expiration-duration-in-seconds: 5
+  client:
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://52.58.55.103:8000/eureka/

@@ -1,0 +1,56 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet author="Aram Kirakosyan" id="1574629139479-1">
+    <createTable tableName="amz_credential">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="pkey_amz_credential"/>
+      </column>
+      <column name="user_id" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="user_type" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="username" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="password" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="amz_refresh_token">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="pkey_amz_refresh_token"/>
+      </column>
+      <column name="refresh_token" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="blocked" type="BOOLEAN">
+        <constraints nullable="false"/>
+      </column>
+      <column name="user_id" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="expires_in" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

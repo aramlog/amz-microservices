@@ -1,0 +1,14 @@
+platform:
+  security:
+    jwt:
+      publicKeyPath: data/keys/public_key.der
+      privateKeyPath: data/keys/private_key.der
+      signatureAlgorithm: RS256
+      authorizationHeader: "Authorization"
+      authorizationHeaderPrefix: "Bearer"
+      refreshToken:
+        validity: 15 # days
+      accessToken:
+        issuer: "AMZ API"
+        subject: "AMZ API Access"
+        validity: 15 # minutes

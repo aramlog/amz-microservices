@@ -1,0 +1,92 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet author="Aram Kirakosyan" id="1574629139479-1">
+    <createTable tableName="amz_account">
+      <column name="id" type="UUID">
+        <constraints primaryKey="true" primaryKeyName="pkey_amz_account"/>
+      </column>
+      <column name="type" type="VARCHAR(32)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="username" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column defaultValueBoolean="false" name="deleted" type="BOOLEAN">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="amz_profile">
+      <column name="account_id" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="first_name" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="picture" type="VARCHAR(512)"/>
+      <column name="email" type="VARCHAR(256)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="mobile" type="VARCHAR(50)"/>
+      <column name="gender" type="VARCHAR(50)" defaultValue="OTHER"/>
+      <column name="birthday" type="date"/>
+    </createTable>
+
+    <createTable tableName="amz_address">
+      <column name="id" type="UUID">
+        <constraints primaryKey="true" primaryKeyName="pkey_amz_address"/>
+      </column>
+      <column name="account_id" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="country" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="state" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="city" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_line_1" type="VARCHAR(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_line_2" type="VARCHAR(128)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="zip_code" type="VARCHAR(16)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addUniqueConstraint
+      tableName="amz_account" columnNames="username"
+      constraintName="unique_index_username"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="account_id" baseTableName="amz_profile"
+      constraintName="fkey_amz_profile_account_id" deferrable="false"
+      initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+      referencedColumnNames="id" referencedTableName="amz_account" validate="true"/>
+
+    <addForeignKeyConstraint
+      baseColumnNames="account_id" baseTableName="amz_address"
+      constraintName="fkey_amz_address_account_id" deferrable="false"
+      initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+      referencedColumnNames="id" referencedTableName="amz_account" validate="true"/>
+
+  </changeSet>
+
+</databaseChangeLog>

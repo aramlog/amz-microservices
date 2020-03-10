@@ -1,0 +1,57 @@
+server:
+  port: 8083
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+platform:
+  security:
+    enabled: true
+
+spring:
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master.yaml
+    default-schema: amz_product
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: amz_product
+        hql:
+          bulk_id_strategy: org.hibernate.hql.spi.id.inline.InlineIdsInClauseBulkIdStrategy
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+---
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://52.58.55.103:8000/eureka/
+
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:postgresql://52.58.55.103:5432/postgres
+    username: postgres
+    password: amz!123

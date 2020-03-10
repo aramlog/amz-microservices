@@ -1,0 +1,5 @@
+databaseChangeLog:
+- includeAll:
+    path: classpath:/db/changelog/v1.0
+- include:
+    file: classpath:/db/changelog/sql/categories.sql

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: amz-microservice-discovery
+  cloud:
+    config:
+      uri: http://localhost:8088
+
+---
+spring:
+  profiles: dev
+
+  cloud:
+    config:
+      uri: http://52.58.55.103:8088
+

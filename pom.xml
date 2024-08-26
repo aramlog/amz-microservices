@@ -27,7 +27,7 @@
   </parent>
 
   <properties>
-    <springfox.swagger.version>2.9.1</springfox.swagger.version>
+    <springfox.swagger.version>2.10.0</springfox.swagger.version>
     <swagger.anntotations.version>1.5.22</swagger.anntotations.version>
     <orika.version>1.5.4</orika.version>
     <jjwt.version>0.9.1</jjwt.version>
